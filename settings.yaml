@@ -1,3 +1,23 @@
 system:
   ip:
   port: 8080
+  env: dev
+log:
+  app: blogW_server
+  dir: logs
+db:
+  user: root
+  password: 12345678
+  host: 127.0.0.1
+  port: 3306
+  db: blogW
+  debug: false
+  source: mysql
+db1:
+  user: root
+  password: 12345678
+  host: 127.0.0.1
+  port: 3306
+  db: blogW
+  debug: false
+  source: mysql
