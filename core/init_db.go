@@ -19,7 +19,7 @@ func InitDB() *gorm.DB {
 	if err != nil {
 		logrus.Fatalf("数据库连接失败 %s", err)
 	}
-	//fmt.Println(db, err)
+	// fmt.Println(db, err)
 	// 设置连接池大小
 	sqlDB, err := db.DB()
 	sqlDB.SetMaxIdleConns(10)

@@ -8,7 +8,7 @@ type DB struct {
 	Host     string `yaml:"host"`
 	Port     int    `yaml:"port"`
 	DB       string `yaml:"db"`
-	Debug    bool   `yaml:"debug"`  //打印全部的日志
+	Debug    bool   `yaml:"debug"`  // 打印全部的日志
 	Source   string `yaml:"source"` // 数据库的源 mysql
 }
 
