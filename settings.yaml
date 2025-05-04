@@ -9,7 +9,11 @@ log:
 jwt:
   expire: 3
   secret: xxx
-  issuer: fengfeng
+  issuer: wang
+redis:
+  addr: 127.0.0.1:6379
+  password: 1234
+  db: 2
 db:
   user: root
   password: 12345678

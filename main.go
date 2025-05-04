@@ -12,6 +12,7 @@ func main() {
 	global.Config = core.Readconf() // 读配置文件
 	core.InitLogrus()               // 日志初始化
 	global.DB = core.InitDB()       // 连接数据库
+	global.Redis = core.InitRedis() // 连接Redis
 
 	flags.Run() //迁移表
 

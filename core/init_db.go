@@ -25,7 +25,7 @@ func InitDB() *gorm.DB {
 	sqlDB.SetMaxIdleConns(10)
 	sqlDB.SetMaxOpenConns(100)
 	sqlDB.SetConnMaxLifetime(time.Hour)
-	logrus.Infof("数据库连接成功")
+	logrus.Infof("数据库连接成功!")
 
 	if !dc1.Empty() {
 		// 读写库不为空，就注册读写分离的配置
