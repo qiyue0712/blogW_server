@@ -6,6 +6,10 @@ system:
 log:
   app: blogW_server
   dir: logs
+jwt:
+  expire: 3
+  secret: xxx
+  issuer: fengfeng
 db:
   user: root
   password: 12345678
