@@ -7,7 +7,8 @@ import (
 )
 
 func SiteRouter(r *gin.RouterGroup) {
-	app := api.App.SiteApi          // 获取处理函数总api
-	r.GET("site", app.SiteInfoView) // 路由路径 + 处理函数本身
+	app := api.App.SiteApi // 获取处理函数总api
+	r.GET("site/qq_url", app.SiteInfoQQView)
+	r.GET("site/:name", app.SiteInfoView) // 路由路径 + 处理函数本身
 	r.PUT("site", middleware.AdminMiddleware, app.SiteUpdateView)
 }

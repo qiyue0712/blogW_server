@@ -2,6 +2,8 @@ package site_api
 
 import (
 	"blogW_server/common/res"
+	"blogW_server/global"
+	"blogW_server/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,12 +12,64 @@ import (
 type SiteApi struct {
 }
 
+type SiteInfoRequest struct {
+	Name string `uri:"name"`
+}
+
 // 示例处理函数：获取站点信息
 
 func (SiteApi) SiteInfoView(c *gin.Context) {
-	res.OkWithData("xx", c)
+	var cr SiteInfoRequest
+	err := c.ShouldBindUri(&cr)
+	if err != nil {
+		res.FailWithError(err, c)
+		return
+	}
+
+	if cr.Name == "site" {
+		global.Config.Site.About.Version = global.Version
+		res.OkWithData(global.Config.Site, c)
+		return
+	}
+
+	// 判断角色是不是管理员
+	middleware.AdminMiddleware(c)
+	_, ok := c.Get("claims")
+	if !ok {
+		return
+	}
+
+	var data any
+
+	switch cr.Name {
+	case "email":
+		rep := global.Config.Email
+		rep.AuthCode = "******"
+		data = rep
+	case "qq":
+		rep := global.Config.QQ
+		rep.AppKey = "******"
+		data = rep
+	case "qiNiu":
+		rep := global.Config.QiNiu
+		rep.SecretKey = "******"
+		data = rep
+	case "ai":
+		rep := global.Config.Ai
+		rep.SecretKey = "******"
+		data = rep
+	default:
+		res.FailWithMsg("不存在的配置", c)
+		return
+	} // 站点配置信息接口
+
+	res.OkWithData(data, c)
 	return
 }
+
+func (SiteApi) SiteInfoQQView(c *gin.Context) {
+	res.OkWithData(global.Config.QQ.Url(), c)
+} // qq登录接口
 
 // 解析
 
