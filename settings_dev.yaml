@@ -84,11 +84,10 @@ qiNiu:
   accessKey: "AaHd2emsnXxdTKNaT0seDG2g-suxyA2vxQlz8_KV"
   secretKey: "2V28lm12d_ovemIuRNTTZPlua8vF5LYn-TQNP8IV"
   bucket: "wangqiyue0712"
-  uri: https://svswmpyac.hn-bkt.clouddn.com
+  uri: https://bluw7.com
   region: z2
   prefix: blogW
   size: 3
-  expire: 60
 ai:
   enable: false
   secretKey: njdfnhj6344t45347gshgsdh

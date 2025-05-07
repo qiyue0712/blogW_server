@@ -68,7 +68,7 @@ func (LogApi) LogListView(c *gin.Context) {
 
 func (LogApi) LogReadView(c *gin.Context) {
 	var cr models.IDRequest // 日志的读取接口
-	err := c.ShouldBindQuery(&cr)
+	err := c.ShouldBindUri(&cr)
 	if err != nil {
 		res.FailWithError(err, c)
 		return
@@ -87,7 +87,7 @@ func (LogApi) LogReadView(c *gin.Context) {
 
 func (LogApi) LogRemoveView(c *gin.Context) {
 	var cr models.RemoveRequest // 日志的删除接口
-	err := c.ShouldBindQuery(&cr)
+	err := c.ShouldBindJSON(&cr)
 	if err != nil {
 		res.FailWithError(err, c)
 		return

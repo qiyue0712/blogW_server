@@ -17,6 +17,7 @@ func Run() {
 	nr.Use(middleware.LogMiddleware) // 使用中间件
 	SiteRouter(nr)                   // 在子路由组 `/api` 下注册 `/site` 路由
 	LogRouter(nr)
+	ImageRouter(nr)
 
 	addr := global.Config.System.Addr()
 	r.Run(addr)
