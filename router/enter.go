@@ -18,6 +18,7 @@ func Run() {
 	SiteRouter(nr)                   // 在子路由组 `/api` 下注册 `/site` 路由
 	LogRouter(nr)
 	ImageRouter(nr)
+	BannerRouter(nr)
 
 	addr := global.Config.System.Addr()
 	r.Run(addr)
