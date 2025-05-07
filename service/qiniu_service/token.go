@@ -10,7 +10,7 @@ import (
 
 func GetToken() (token string, err error) {
 	mac := credentials.NewCredentials(global.Config.QiNiu.AccessKey, global.Config.QiNiu.SecretKey)
-	putPolicy, err := uptoken.NewPutPolicy(global.Config.QiNiu.Bucket, time.Now().Add(1*time.Minute))
+	putPolicy, err := uptoken.NewPutPolicy(global.Config.QiNiu.Bucket, time.Now().Add(time.Duration(global.Config.QiNiu.Expiry)*time.Second))
 	if err != nil {
 		return
 	}

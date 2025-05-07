@@ -14,6 +14,7 @@ type QiNiuGenTokenResponse struct {
 	Key    string `json:"key"`
 	Region string `json:"region"`
 	Url    string `json:"url"`
+	Size   int    `json:"size"`
 }
 
 func (ImageApi) QiNiuGenToken(c *gin.Context) {
@@ -25,17 +26,19 @@ func (ImageApi) QiNiuGenToken(c *gin.Context) {
 
 	token, err := qiniu_service.GetToken()
 	if err != nil {
+		res.FailWithError(err, c)
 		return
 	}
 
 	uid := uuid.New().String()
-	key := fmt.Sprintf("%s%s.png", q.Prefix, uid)
-	url := fmt.Sprintf("%s%s", q.Uri, key)
+	key := fmt.Sprintf("%s/%s.png", q.Prefix, uid)
+	url := fmt.Sprintf("%s/%s", q.Uri, key)
 
 	res.OkWithData(QiNiuGenTokenResponse{
 		Token:  token,
 		Key:    key,
 		Region: q.Region,
 		Url:    url,
+		Size:   q.Size,
 	}, c)
 }

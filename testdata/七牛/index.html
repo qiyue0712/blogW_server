@@ -13,8 +13,9 @@
 <script>
     function upload() {
         const uploader = document.getElementById("uploader")
+        console.log(uploader.files)
         const file = uploader.files[0]
-        const token = ""
+        const token = "AaHd2emsnXxdTKNaT0seDG2g-suxyA2vxQlz8_KV:QknN5-6pUwva8m1Rs9K-yEyRX1I=:eyJkZWFkbGluZSI6MTc0NjYzNDc5Miwic2NvcGUiOiJ3YW5ncWl5dWUwNzEyIn0= "
 
         const observer = {
             next(res){
@@ -27,18 +28,24 @@
             },
             complete(res){
                 // ...
-                console.log("complete", res)
+                console.log("complete:", res)
             },
         }
 
         const config = {
             useCdnDomain: true,
-            region: qiniu.region.z2
+            region: qiniu.region.z2, // 确保此处与存储桶区域一致
+            // 手动指定上传域名（根据实际区域调整）
         }
-        const putExtra
+
+        const putExtra= {
+
+        }
+
 
         const observable = qiniu.upload(file, "blogW/client/xxx.png", token, putExtra, config)
         const subscription = observable.subscribe(observer) // 上传开始
+        console.log(subscription)
     }
 </script>
 
