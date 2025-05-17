@@ -30,15 +30,6 @@ redis:
   addr: 127.0.0.1:6379
   password: "1234"
   db: 2
-upload:
-  size: 3
-  whiteList:
-    - jpg
-    - jpeg
-    - png
-    - webp
-    - gif
-  uploadDir: images001
 site:
   siteInfo:
     title: 王佳阅博客1
@@ -60,7 +51,7 @@ site:
     bilibili: ""
   login:
     qqLogin: false
-    usernamePwdLogin: false
+    usernamePwdLogin: true
     emailLogin: false
     captcha: false
   indexRight:
@@ -68,29 +59,38 @@ site:
   article:
     noExamine: true
 email:
-  domain: ""
-  port: ""
-  sendEmail: ""
-  authCode: ""
-  sendNickname: ""
-  ssl: false
+  domain: smtp.163.com
+  port: "465"
+  sendEmail: 13641913653@163.com
+  authCode: YHdetXtdRZMNKEDZ
+  sendNickname: bluw7博客
+  ssl: true
   tls: false
 qq:
-  appID: "34423"
+  appID: "344213"
   appKey: ""
   redirect: http://xxxx
 qiNiu:
   enable: true
-  accessKey: "AaHd2emsnXxdTKNaT0seDG2g-suxyA2vxQlz8_KV"
-  secretKey: "2V28lm12d_ovemIuRNTTZPlua8vF5LYn-TQNP8IV"
-  bucket: "wangqiyue0712"
+  accessKey: AaHd2emsnXxdTKNaT0seDG2g-suxyA2vxQlz8_KV
+  secretKey: 2V28lm12d_ovemIuRNTTZPlua8vF5LYn-TQNP8IV
+  bucket: wangqiyue0712
   uri: https://svswmpyac.hn-bkt.clouddn.com
   region: z2
   prefix: blogW
   size: 3
-  expire: 60
+  expiry: 0
 ai:
   enable: false
   secretKey: njdfnhj6344t45347gshgsdh
   nickname: 小王
   avatar: /xxx/xxx
+upload:
+  size: 3
+  whiteList:
+  - jpg
+  - jpeg
+  - png
+  - webp
+  - gif
+  uploadDir: images001

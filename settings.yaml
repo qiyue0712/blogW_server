@@ -7,21 +7,42 @@ log:
   app: blogW_server
   dir: logs
 db:
-  user: root
-  password: "12345678"
-  host: 127.0.0.1
-  port: 3306
-  db: blogW
-  debug: false
-  source: mysql
-db1:
-  user: root
-  password: "12345678"
-  host: 127.0.0.1
-  port: 3306
-  db: blogW
-  debug: false
-  source: mysql
+ - user: root
+   password: 123456
+   host: 127.0.0.1
+   port: 3307
+   db: blogw
+   debug: false
+   source: mysql
+ - user: root
+   password: 123456
+   host: 127.0.0.1
+   port: 3308
+   db: blogw
+   debug: false
+   source: mysql
+es:
+  addr: 127.0.0.1:9200
+  is_https:
+  username:
+  password:
+river:
+  enable: true
+  server_id: 1001
+  flavor: mysql
+  data_dir: ./var
+  source:
+    - schema: blogw
+      tables:
+        - article_models
+  rule:
+    - schema: blogw
+      table: article_models
+      index: article_index
+      type: _doc
+      field:
+        tag_list: tag_list,list
+  bulk_size: 128
 jwt:
   expire: 3
   secret: xxx
@@ -30,15 +51,6 @@ redis:
   addr: 127.0.0.1:6379
   password: "1234"
   db: 2
-upload:
-  size: 3
-  whiteList:
-    - jpg
-    - jpeg
-    - png
-    - webp
-    - gif
-  uploadDir: images001
 site:
   siteInfo:
     title: 王佳阅博客1
@@ -62,18 +74,18 @@ site:
     qqLogin: false
     usernamePwdLogin: false
     emailLogin: false
-    captcha: false
+    captcha: true
   indexRight:
     list: []
   article:
     noExamine: true
 email:
-  domain: ""
-  port: ""
-  sendEmail: ""
-  authCode: ""
-  sendNickname: ""
-  ssl: false
+  domain: smtp.163.com
+  port: "465"
+  sendEmail: 13641913653@163.com
+  authCode: YHdetXtdRZMNKEDZ
+  sendNickname: bluw7博客
+  ssl: true
   tls: false
 qq:
   appID: "34423"
@@ -81,16 +93,25 @@ qq:
   redirect: http://xxxx
 qiNiu:
   enable: true
-  accessKey: "AaHd2emsnXxdTKNaT0seDG2g-suxyA2vxQlz8_KV"
-  secretKey: "2V28lm12d_ovemIuRNTTZPlua8vF5LYn-TQNP8IV"
-  bucket: "wangqiyue0712"
+  accessKey: AaHd2emsnXxdTKNaT0seDG2g-suxyA2vxQlz8_KV
+  secretKey: 2V28lm12d_ovemIuRNTTZPlua8vF5LYn-TQNP8IV
+  bucket: wangqiyue0712
   uri: https://svswmpyac.hn-bkt.clouddn.com
   region: z2
   prefix: blogW
   size: 3
-  expire: 60
+  expiry: 0
 ai:
   enable: false
   secretKey: njdfnhj6344t45347gshgsdh
   nickname: 小王
   avatar: /xxx/xxx
+upload:
+  size: 3
+  whiteList:
+  - jpg
+  - jpeg
+  - png
+  - webp
+  - gif
+  uploadDir: images001

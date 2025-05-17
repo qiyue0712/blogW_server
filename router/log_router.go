@@ -6,9 +6,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func LogRouter(r *gin.RouterGroup) {
+func LogRouter(rr *gin.RouterGroup) {
 	app := api.App.LogApi // 获取处理函数总api
-	r.Use(middleware.AdminMiddleware)
+	r := rr.Group("").Use(middleware.AdminMiddleware)
 	r.GET("logs", app.LogListView)
 	r.GET("logs/:id", app.LogReadView)
 	r.DELETE("logs", app.LogRemoveView)

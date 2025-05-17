@@ -1,5 +1,7 @@
 package models
 
+import _ "embed"
+
 // 文章表
 
 type ArticleModel struct {
@@ -18,4 +20,15 @@ type ArticleModel struct {
 	CollectCount int       `json:"collectCount"`
 	OpenComment  bool      `json:"openComment"` // 是否开启评论
 	Status       int8      `json:"status"`      // 状态 草稿 审核中 已发布
+}
+
+//go:embed mappings/article_mapping.json
+var articleMapping string
+
+func (ArticleModel) Mapping() string {
+	return articleMapping
+}
+
+func (ArticleModel) Index() string {
+	return "article_index"
 }

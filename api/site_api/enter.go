@@ -92,7 +92,7 @@ func (SiteApi) SiteUpdateView(c *gin.Context) {
 
 	// 请求体的获取
 	var cr SiteInfoRequest
-	err := c.ShouldBindJSON(&cr)
+	err := c.ShouldBindUri(&cr)
 	if err != nil {
 		res.FailWithError(err, c)
 		return

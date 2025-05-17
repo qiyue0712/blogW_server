@@ -23,7 +23,7 @@ func FlagDB() {
 		&models.CommentModel{},                // 评论表
 		&models.BannerModel{},                 // banner表
 		&models.LogModel{},                    // 日志表
-		&models.UserLoginModel{},              // 用户登录表
+		&models.UserLoginModel{},              // 用户登录记录表
 		&models.GlobalNotificationModel{},     // 全局通知表
 	)
 	if err != nil {

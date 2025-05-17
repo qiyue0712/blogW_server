@@ -2,6 +2,7 @@ package jwts
 
 import (
 	"blogW_server/global"
+	"blogW_server/models"
 	"blogW_server/models/enum"
 	"errors"
 	"github.com/dgrijalva/jwt-go"
@@ -19,6 +20,11 @@ type Claims struct {
 type MyClaims struct {
 	Claims
 	jwt.StandardClaims
+}
+
+func (m MyClaims) GetUser() (user models.UserModel, err error) {
+	err = global.DB.Take(&user, m.UserID).Error
+	return
 }
 
 // get token
@@ -67,4 +73,16 @@ func ParseTokenByGin(c *gin.Context) (*MyClaims, error) {
 	} // 传递token 在header/query
 
 	return ParseToken(token)
+}
+
+func GetClaims(c *gin.Context) (claims *MyClaims) {
+	_claims, ok := c.Get("claims")
+	if !ok {
+		return
+	}
+	claims, ok = _claims.(*MyClaims)
+	if !ok {
+		return
+	}
+	return
 }

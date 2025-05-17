@@ -13,8 +13,10 @@ func main() {
 	core.InitLogrus()               // 日志初始化
 	global.DB = core.InitDB()       // 连接数据库
 	global.Redis = core.InitRedis() // 连接Redis
-
+	global.ESClient = core.EsConnect()
 	flags.Run() //迁移表
+
+	core.InitMysqlES()
 
 	// 启动web程序
 	router.Run()
